@@ -6,7 +6,7 @@ compiler:
 addons:
   apt:
     sources:
-      - nschloe/cmake-nightly
+      - sourceline: 'ppa:nschloe/cmake-nightly'
     packages:
       - cmake-data
       - cmake
