@@ -6,7 +6,7 @@ compiler:
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+      - nschloe/cmake-nightly
     packages:
       - cmake-data
       - cmake
