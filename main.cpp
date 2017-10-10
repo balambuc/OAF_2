@@ -19,13 +19,13 @@ int main() {
     BigNum bn2(bn);
     BigNum bn3 = bn2;
     BigNum j(5);
-    std::cout << BigNum(123) * BigNum(4567) << std::endl;
-    std::cout << BigNum(7891011) * BigNum(3) << std::endl;
-    std::cout << BigNum(7891011) * BigNum(12) << std::endl;
-    std::cout << BigNum(7891011) * BigNum(123) << std::endl;
-    std::cout << BigNum(7891011) * BigNum(1234) << std::endl;
-    std::cout << BigNum(7891011) * BigNum(12345) << std::endl;
-    std::cout << BigNum(7891011) * BigNum(123456) << std::endl;
+    std::cout << BigNum(123) + BigNum(4567) << std::endl;
+    std::cout << BigNum(7891011) + BigNum(3) << std::endl;
+    std::cout << BigNum(7891011) + BigNum(12) << std::endl;
+    std::cout << BigNum(7891011) + BigNum(123) << std::endl;
+    std::cout << BigNum(7891011) + BigNum(1234) << std::endl;
+    std::cout << BigNum(7891011) + BigNum(12345) << std::endl;
+    std::cout << BigNum(7891011) + BigNum(7234561) << std::endl;
     std::cin >> bn3;
     std::cout << "A bn3-as nagyszám: " << bn3 << std::endl;
 

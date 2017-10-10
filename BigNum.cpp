@@ -24,25 +24,23 @@ void BigNum::push(Node* prev, int n, Node* next) {
 }
 
 BigNum& operator+(const BigNum& lhs, const BigNum& rhs) {
-    //TODO: enor nélkül megcsinálni
-
     auto result = new BigNum();
-    BigNum lHand = lhs;
-    BigNum rHand = rhs;
-    BigNum::Enor lhsEnor = lHand.createEnor(BigNum::Enor::MODE::L2F);
-    BigNum::Enor rhsEnor = rHand.createEnor(BigNum::Enor::MODE::L2F);
+
+    BigNum::Node* pLhs = lhs._last;
+    BigNum::Node* pRhs = rhs._last;
+
     int sum, carry = 0;
 
-    for (lhsEnor.first(), rhsEnor.first();
-         !lhsEnor.end() || !rhsEnor.end();
-         lhsEnor.next(), rhsEnor.next())
+    while (pLhs || pRhs)
     {
-        sum = (lhsEnor.current() ? lhsEnor.current()->value : 0)
-              + carry
-              + (rhsEnor.current() ? rhsEnor.current()->value : 0);
+        sum = (pLhs ? pLhs->value : 0) + carry + (pRhs ? pRhs->value : 0);
         result->push_first(sum % 10);
         carry = sum / 10;
+
+        if (pLhs) pLhs = pLhs->prev;
+        if (pRhs) pRhs = pRhs->prev;
     }
+    if (carry) result->push_first(carry);
 
     return *result;
 }
