@@ -42,12 +42,9 @@ public:
 
         void first() { if (_m == L2F) _ptr = _bigNum->_last; else _ptr = _bigNum->_first; }
 
-        void next() {
-            if (_ptr == nullptr) return;
-            if (_m == L2F) _ptr = _ptr->prev; else _ptr = _ptr->next;
-        }
+        void next() { if (_m == L2F) _ptr = _ptr->prev; else _ptr = _ptr->next; }
 
-        Node* current() { return _ptr; }
+        int current() { return _ptr->value; }
 
         bool end() { return _ptr == nullptr; }
     };

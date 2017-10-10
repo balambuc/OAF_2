@@ -52,6 +52,26 @@ BigNum& operator+(const BigNum& lhs, const BigNum& rhs) {
  * @return result - a reference to the result of the operation
  */
 BigNum& operator*(const BigNum& lhs, const BigNum& rhs) {
+    //FIXME
+
+    auto result = new BigNum(0);
+
+    int sum, carry;
+
+    for (BigNum::Node* pLhs = lhs._last; pLhs; pLhs = pLhs->prev)
+    {
+        carry = 0;
+
+        for (BigNum::Node* pRhs = rhs._last; pRhs; pRhs = pRhs->prev)
+        {
+
+        }
+    }
+
+    return *result;
+
+
+    /*
     auto result = new BigNum(0);
     BigNum lHand = BigNum();
     BigNum rHand = BigNum();
@@ -93,6 +113,7 @@ BigNum& operator*(const BigNum& lhs, const BigNum& rhs) {
     }
 
     return *result;
+    */
 }
 
 BigNum& BigNum::operator=(const BigNum& rhs) {
@@ -105,7 +126,7 @@ BigNum& BigNum::operator=(const BigNum& rhs) {
 std::ostream& operator<<(std::ostream& os, BigNum& bigNum) {
     BigNum::Enor enorF2L = bigNum.createEnor();
     for (enorF2L.first(); !enorF2L.end(); enorF2L.next())
-        os << enorF2L.current()->value;
+        os << enorF2L.current();
     return os;
 }
 
