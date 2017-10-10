@@ -3,15 +3,10 @@ language: cpp
 compiler:  
     - gcc
 
-addons:
-  apt:
-    sources:
-      - sourceline: 'ppa:nschloe/cmake-nightly'
-    packages:
-      - cmake-data
-      - cmake
-
-before_script:  
+before_script:
+    - sudo add-apt-repository ppa:nschloe/cmake-nightly -y
+    - sudo apt-get update -q
+    - sudo apt-get install cmake cmake-data -y
     - mkdir build
     - cd build
     - cmake ..
