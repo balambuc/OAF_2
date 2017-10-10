@@ -4,9 +4,6 @@ compiler:
     - gcc
 
 before_script:
-    - sudo add-apt-repository ppa:nschloe/cmake-nightly -y
-    - sudo apt-get update -q
-    - sudo apt-get install cmake cmake-data -y
     - mkdir build
     - cd build
     - cmake ..
