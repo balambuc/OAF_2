@@ -24,6 +24,7 @@ private:
     void push_last(int n) { push(_last, n, nullptr); }
     void copy(const BigNum& other);
     void destruct();
+    int length() const;
 
 public:
     class Enor {
@@ -56,7 +57,6 @@ public:
     ~BigNum() { destruct(); }
 
     Enor createEnor(Enor::MODE mode = Enor::MODE::F2L) { return {this, mode}; }
-    int length() const;
 
     BigNum& operator=(const BigNum& rhs);
 
