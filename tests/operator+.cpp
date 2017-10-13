@@ -8,7 +8,9 @@ TEST_CASE("Nagy szamok osszeadasa", "operator+") {
     SECTION("0 elem vizsgalata")
     {
         ss[0] << BigNum(1234) + BigNum(0);
+
         CHECK(ss[0].str() == "1234");
+
         ss[0].str(""); //clear the stringstream
     }
 
@@ -16,7 +18,9 @@ TEST_CASE("Nagy szamok osszeadasa", "operator+") {
     {
         ss[0] << BigNum(1234) + BigNum(5678);
         ss[1] << BigNum(5678) + BigNum(1234);
+
         CHECK(ss[0].str() == ss[1].str());
+
         ss[0].str("");
         ss[1].str("");
     }
@@ -47,13 +51,14 @@ TEST_CASE("Nagy szamok osszeadasa", "operator+") {
         int a,b;
         for (int i = 0; i < 10; ++i)
         {
-            a = std::rand();
-            b = std::rand();
+            a = std::rand() % 10000; // így nem csordul túl az int + int összeg
+            b = std::rand() % 10000;
             BigNum bNa(a);
             BigNum bNb(b);
             ss[0] << (bNa + bNb);
             ss[1] << (a + b);
             std::cout << (a + b);
+
             CHECK(ss[0].str() == ss[1].str());
 
             ss[0].str("");
