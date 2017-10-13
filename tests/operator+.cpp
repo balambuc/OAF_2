@@ -1,3 +1,4 @@
+#include <iostream>
 #include "catch.hpp"
 #include "BigNum.h"
 
@@ -52,7 +53,7 @@ TEST_CASE("Nagy szamok osszeadasa", "operator+") {
             BigNum bNb(b);
             ss[0] << (bNa + bNb);
             ss[1] << (a + b);
-
+            std::cout << (a + b);
             CHECK(ss[0].str() == ss[1].str());
 
             ss[0].str("");
