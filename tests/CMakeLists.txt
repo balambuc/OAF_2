@@ -5,10 +5,11 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(tests
         catch.hpp
-        operator+.cpp
-        ctor.cpp
         main.cpp
-        streamOperators.cpp)
+        ctor.cpp
+        streamOperators.cpp
+        operator+.cpp
+        )
 
 target_link_libraries(tests src)
 
