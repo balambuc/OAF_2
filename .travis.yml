@@ -8,4 +8,4 @@ before_script:
     - cd build
     - cmake ..
 
-script: make && ./tests/tests -r junit
+script: make && ./tests/tests
