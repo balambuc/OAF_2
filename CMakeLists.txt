@@ -3,5 +3,6 @@ project(2bead)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp BigNum.cpp BigNum.h)
-add_executable(2bead ${SOURCE_FILES})
+add_subdirectory(src)
+add_subdirectory(app)
+add_subdirectory(tests)

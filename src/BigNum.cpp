@@ -1,6 +1,6 @@
 #include <cstring>
 #include <iostream>
-#include "BigNum.h"
+#include "headers/BigNum.h"
 
 
 BigNum::BigNum(int n) {
