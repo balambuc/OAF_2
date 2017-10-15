@@ -8,7 +8,8 @@ add_executable(tests
         main.cpp
         ctor.cpp
         streamOperators.cpp
-        operator+.cpp
+        cpyCtor_op=.cpp
+        #operator+.cpp
         )
 
 target_link_libraries(tests src)

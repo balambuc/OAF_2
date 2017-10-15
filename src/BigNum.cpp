@@ -1,33 +1,33 @@
 #include <cstring>
 #include <iostream>
-#include "headers/BigNum.h"
+#include "Bignum.h"
 
 
-BigNum::BigNum(int n) {
+Bignum::Bignum(int n) {
     while (n / 10 != 0)
     {
-        push_first(n % 10);
+        (new Node(n % 10))->linkRightOf(_first);
         n /= 10;
     }
-    push_first(n);
+    (new Node(n))->linkRightOf(_first);
 }
 
-BigNum::BigNum(const char* str) {
+Bignum::Bignum(const char* str) {
     for (int i = 0; i < std::strlen(str); ++i)
-        push_last(str[i] - '0');
+        (new Node(str[i] - '0'))->linkLeftOf(_first);
 }
 
-void BigNum::push(Node* prev, int n, Node* next) {
+/*void Bignum::push(Node* prev, int n, Node* next) {
     auto p = new Node(prev, n, next);
     prev ? prev->next = p : _first = p;
     next ? next->prev = p : _last = p;
 }
 
-BigNum& operator+(const BigNum& lhs, const BigNum& rhs) {
-    auto result = new BigNum();
+Bignum& operator+(const Bignum& lhs, const Bignum& rhs) {
+    auto result = new Bignum();
 
-    BigNum::Node* pLhs = lhs._last;
-    BigNum::Node* pRhs = rhs._last;
+    Bignum::Node* pLhs = lhs._last;
+    Bignum::Node* pRhs = rhs._last;
 
     int sum, carry = 0;
 
@@ -37,8 +37,8 @@ BigNum& operator+(const BigNum& lhs, const BigNum& rhs) {
         result->push_first(sum % 10);
         carry = sum / 10;
 
-        if (pLhs) pLhs = pLhs->prev;
-        if (pRhs) pRhs = pRhs->prev;
+        if (pLhs) pLhs = pLhs->pLeft;
+        if (pRhs) pRhs = pRhs->pLeft;
     }
     if (carry) result->push_first(carry);
 
@@ -51,30 +51,29 @@ BigNum& operator+(const BigNum& lhs, const BigNum& rhs) {
  * @param rhs - right side of multiplication
  * @return result - a reference to the result of the operation
  */
-BigNum& operator*(const BigNum& lhs, const BigNum& rhs) {
+Bignum& operator*(const Bignum& lhs, const Bignum& rhs) {
     //FIXME
-
-    auto result = new BigNum(0);
+    /*
+    auto result = new Bignum(0);
 
     int sum, carry;
 
-    for (BigNum::Node* pLhs = lhs._last; pLhs; pLhs = pLhs->prev)
+    for (Bignum::Node* pLhs = lhs._last; pLhs; pLhs = pLhs->pLeft)
     {
         carry = 0;
 
-        for (BigNum::Node* pRhs = rhs._last; pRhs; pRhs = pRhs->prev)
+        for (Bignum::Node* pRhs = rhs._last; pRhs; pRhs = pRhs->pLeft)
         {
-
         }
     }
 
     return *result;
 
 
-    /*
-    auto result = new BigNum(0);
-    BigNum lHand = BigNum();
-    BigNum rHand = BigNum();
+
+    auto result = new Bignum(0);
+    Bignum lHand = Bignum();
+    Bignum rHand = Bignum();
 
     if (lhs.length() <= rhs.length())
     {
@@ -87,15 +86,15 @@ BigNum& operator*(const BigNum& lhs, const BigNum& rhs) {
         rHand = lhs;
     }
 
-    BigNum::Enor lhsEnor = lHand.createEnor(BigNum::Enor::MODE::L2F);
-    BigNum::Enor rhsEnor = rHand.createEnor(BigNum::Enor::MODE::L2F);
-    BigNum::Node* starter = result->_last;
+    Bignum::Enor lhsEnor = lHand.createEnor(Bignum::Enor::MODE::L2F);
+    Bignum::Enor rhsEnor = rHand.createEnor(Bignum::Enor::MODE::L2F);
+    Bignum::Node* starter = result->_last;
     int mul, carry;
 
     for (lhsEnor.first(); !lhsEnor.end(); lhsEnor.next())
     {
         carry = 0;
-        BigNum::Node* p = starter;
+        Bignum::Node* p = starter;
         for (rhsEnor.first(); !rhsEnor.end(); rhsEnor.next())
         {
             mul = lhsEnor.current()->value * rhsEnor.current()->value + carry + (p ? p->value : 0);
@@ -116,49 +115,56 @@ BigNum& operator*(const BigNum& lhs, const BigNum& rhs) {
     */
 }
 
-BigNum& BigNum::operator=(const BigNum& rhs) {
+Bignum& Bignum::operator=(const Bignum& rhs) {
     if (&rhs == this) return *this;
     destruct();
     copy(rhs);
     return *this;
 }
 
-std::ostream& operator<<(std::ostream& os, BigNum& bigNum) {
-    BigNum::Enor enorF2L = bigNum.createEnor();
-    for (enorF2L.first(); !enorF2L.end(); enorF2L.next())
-        os << enorF2L.current();
+std::ostream& operator<<(std::ostream& os, Bignum& bigNum) {
+    for (Bignum::Node* p = bigNum._first->right(); p != bigNum._first ; p = p->right())
+        os << p->value;
     return os;
 }
 
-std::istream& operator>>(std::istream& is, BigNum& bigNum) {
+std::istream& operator>>(std::istream& is, Bignum& bigNum) {
     std::string num;
     is >> num;
-    BigNum temp(num.c_str());
+    Bignum temp(num.c_str());
     bigNum = temp;
     return is;
 }
 
-void BigNum::destruct() {
-    Node* p;
-    while (_first != nullptr)
-    {
-        p = _first;
-        _first = p->next;
-        delete p;
-    }
-    _last = nullptr;
+void Bignum::destruct() {
+    while (_first->right() != _first)
+        delete _first->right();
 }
 
-void BigNum::copy(const BigNum& other) {
-    for (Node* p = other._first; p != nullptr; p = p->next)
-        push_last(p->value);
+void Bignum::copy(const Bignum& other) {
+    for (Node* p = other._first->right(); p != other._first; p = p->right())
+        (new Node(p->value))->linkLeftOf(_first);
 }
 
-int BigNum::length() const {
-    Node* p = _first;
+int Bignum::length() const {
+    Node* p = _first->right();
     int i;
-    for (i = 0; p; ++i, p = p->next);
+    for (i = 1; p != _first; ++i, p = p->right());
     return i;
 }
 
+void Bignum::Node::linkLeftOf(Bignum::Node* ofNode) {
+    unlink();
+    Node* prev = ofNode->pLeft;
+    pLeft = prev;
+    pRight = ofNode;
+    prev->pRight = ofNode->pLeft = this;
+}
 
+void Bignum::Node::linkRightOf(Bignum::Node* ofNode) {
+    unlink();
+    Node* next = ofNode->pRight;
+    pRight = next;
+    pLeft = ofNode;
+    next->pLeft = ofNode->pRight = this;
+}
