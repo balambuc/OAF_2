@@ -1,5 +1,5 @@
 add_library(src STATIC
-        headers/BigNum
+        headers/Bignum.h
         Bignum.cpp
         )
 

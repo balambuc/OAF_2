@@ -2,22 +2,20 @@
 #include "Bignum.h"
 
 TEST_CASE("Copy konstruktor es ertekadas operator", "[Bignum(Bignum) op=]") {
-    std::stringstream ss[2];
+    std::stringstream ss;
 
-    Bignum i(1234);
-    ss[0] << i;
+    Bignum a(1234);
+    Bignum b(a);
+    ss << b;
 
-    Bignum s("1234");
-    ss[1] << s;
-
-    SECTION("int")
+    SECTION("copy ctor")
     {
-        CHECK(ss[0].str() == "1234");
+        CHECK(ss.str() == "1234");
     }
 
-    SECTION("str")
+    SECTION("op=")
     {
 
-        CHECK(ss[1].str() == "1234");
+        CHECK(ss.str() == "1234");
     }
 }
