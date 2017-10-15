@@ -19,7 +19,7 @@ TEST_CASE("Nagy szamok osszeadasa", "[operator+]") {
         ss[0] << Bignum(1234) + Bignum(5678);
         ss[1] << Bignum(5678) + Bignum(1234);
 
-        CHECK(ss[0].str() != ss[1].str());
+        CHECK(ss[0].str() == ss[1].str());
 
         ss[0].str("");
         ss[1].str("");
