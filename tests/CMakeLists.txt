@@ -9,7 +9,7 @@ add_executable(tests
         ctor.cpp
         streamOperators.cpp
         cpyCtor_op=.cpp
-        #operator+.cpp
+        operator+.cpp
         )
 
 target_link_libraries(tests src)

@@ -17,30 +17,24 @@ Bignum::Bignum(const char* str) {
         (new Node(str[i] - '0'))->linkLeftOf(_first);
 }
 
-/*void Bignum::push(Node* prev, int n, Node* next) {
-    auto p = new Node(prev, n, next);
-    prev ? prev->next = p : _first = p;
-    next ? next->prev = p : _last = p;
-}
-
 Bignum& operator+(const Bignum& lhs, const Bignum& rhs) {
     auto result = new Bignum();
 
-    Bignum::Node* pLhs = lhs._last;
-    Bignum::Node* pRhs = rhs._last;
+    Bignum::Node* pLhs = lhs._first->left();
+    Bignum::Node* pRhs = rhs._first->left();
 
     int sum, carry = 0;
 
-    while (pLhs || pRhs)
+    while (pLhs != lhs._first || pRhs != rhs._first)
     {
-        sum = (pLhs ? pLhs->value : 0) + carry + (pRhs ? pRhs->value : 0);
-        result->push_first(sum % 10);
+        sum = (pLhs != lhs._first ? pLhs->value : 0) + carry + (pRhs != rhs._first ? pRhs->value : 0);
+        (new Bignum::Node(sum % 10))->linkRightOf(result->_first);
         carry = sum / 10;
 
-        if (pLhs) pLhs = pLhs->pLeft;
-        if (pRhs) pRhs = pRhs->pLeft;
+        if (pLhs != lhs._first) pLhs = pLhs->left();
+        if (pRhs != rhs._first) pRhs = pRhs->left();
     }
-    if (carry) result->push_first(carry);
+    if (carry) (new Bignum::Node(carry))->linkRightOf(result->_first);
 
     return *result;
 }
