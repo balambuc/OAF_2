@@ -2,6 +2,31 @@
 #include "catch.hpp"
 #include "Bignum.h"
 
+TEST_CASE("szorzas segedfuggvenyei", "[operator*]") {
+    std::stringstream ss[2];
+
+    SECTION("timesB")
+    {
+        ss[0] << timesB(3, *(new Bignum(123)));
+        CHECK(ss[0].str() == "123000");
+        ss[0].str("");
+    }
+
+    SECTION("mulWithLessThanTen")
+    {
+        for (int i = 0; i < 11; ++i)
+        {
+            ss[0] << mulWithLessThanTen(i, *(new Bignum(123)));
+            ss[1] << (i * 123);
+
+            CHECK(ss[0].str() == ss[1].str());
+
+            ss[0].str("");
+            ss[1].str("");
+        }
+    }
+}
+
 TEST_CASE("Nagy szamok szorzasa", "[operator*]") {
     std::stringstream ss[2];
 
@@ -55,7 +80,7 @@ TEST_CASE("Nagy szamok szorzasa", "[operator*]") {
     {
         ss[0] << Bignum("1234567891011121314151617181920") * Bignum("212223242526272829303132333435");
 
-        CHECK(ss[0].str() == "1446791133537394143454749515355");
+        CHECK(ss[0].str() == "262004000949202360313780607936863459388689455414248493495200");
 
         ss[0].str("");
     }

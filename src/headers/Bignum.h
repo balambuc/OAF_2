@@ -63,7 +63,7 @@ public:
         delete _first;
     }
 
-    Enor createEnor() {return *(new Enor(this));}
+    Enor createEnor() { return *(new Enor(this)); }
 
     Bignum& operator=(const Bignum& rhs);
 
@@ -71,6 +71,8 @@ public:
     friend std::istream& operator>>(std::istream& is, Bignum& bigNum);
     friend Bignum& operator+(const Bignum& lhs, const Bignum& rhs);
     friend Bignum& operator*(const Bignum& lhs, const Bignum& rhs);
+    friend Bignum& timesB(int m, const Bignum& num);
+    friend Bignum& mulWithLessThanTen(int n, const Bignum& bignum);
 };
 
 
