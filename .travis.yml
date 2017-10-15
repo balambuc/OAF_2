@@ -19,7 +19,7 @@ before_script:
     - cd build
     - cmake ..
 
-script: make && make CTEST_OUTPUT_ON_FAILURE=1 test && ls
+script: make && make CTEST_OUTPUT_ON_FAILURE=1 test && ls -l -R
 
 after_success:
     # Creating report
