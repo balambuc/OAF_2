@@ -17,7 +17,6 @@ target_link_libraries(unit_tests src)
 
 add_test(NAME unit_tests_bignum COMMAND unit_tests)
 
-find_package(codecov)
 add_coverage(unit_tests)
 
 
