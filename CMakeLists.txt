@@ -10,3 +10,4 @@ add_subdirectory(app)
 add_subdirectory(tests)
 
 
+add_test(NAME unit_tests COMMAND tests)
