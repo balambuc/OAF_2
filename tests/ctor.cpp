@@ -1,13 +1,13 @@
 #include "catch.hpp"
-#include "BigNum.h"
+#include "Bignum.h"
 
-TEST_CASE("Nagyszam osztaly konstruktorai", "BigNum(int/str)") {
+TEST_CASE("Nagyszam osztaly konstruktorai", "[Bignum(int/str)]") {
     std::stringstream ss[2];
 
-    BigNum i(1234);
+    Bignum i(1234);
     ss[0] << i;
 
-    BigNum s("1234");
+    Bignum s("1234");
     ss[1] << s;
 
     SECTION("int")
@@ -19,10 +19,5 @@ TEST_CASE("Nagyszam osztaly konstruktorai", "BigNum(int/str)") {
     {
 
         CHECK(ss[1].str() == "1234");
-    }
-
-    SECTION("int == str")
-    {
-        CHECK(ss[0].str() == ss[1].str());
     }
 }

@@ -1,13 +1,13 @@
 #include <iostream>
 #include "catch.hpp"
-#include "BigNum.h"
+#include "Bignum.h"
 
-TEST_CASE("Nagy szamok osszeadasa", "operator+") {
+TEST_CASE("Nagy szamok osszeadasa", "[operator+]") {
     std::stringstream ss[2];
 
     SECTION("0 elem vizsgalata")
     {
-        ss[0] << BigNum(1234) + BigNum(0);
+        ss[0] << Bignum(1234) + Bignum(0);
 
         CHECK(ss[0].str() == "1234");
 
@@ -16,8 +16,8 @@ TEST_CASE("Nagy szamok osszeadasa", "operator+") {
 
     SECTION("kommutativitas vizsgalata")
     {
-        ss[0] << BigNum(1234) + BigNum(5678);
-        ss[1] << BigNum(5678) + BigNum(1234);
+        ss[0] << Bignum(1234) + Bignum(5678);
+        ss[1] << Bignum(5678) + Bignum(1234);
 
         CHECK(ss[0].str() == ss[1].str());
 
@@ -27,8 +27,8 @@ TEST_CASE("Nagy szamok osszeadasa", "operator+") {
 
     SECTION("asszociativitas vizsgalata")
     {
-        ss[0] << ( BigNum(1234) + BigNum(5678) ) + BigNum(91011);
-        ss[1] << BigNum(5678) + ( BigNum(1234) + BigNum(91011) );
+        ss[0] << ( Bignum(1234) + Bignum(5678) ) + Bignum(91011);
+        ss[1] << Bignum(5678) + ( Bignum(1234) + Bignum(91011) );
 
         CHECK(ss[0].str() == ss[1].str());
 
@@ -38,7 +38,7 @@ TEST_CASE("Nagy szamok osszeadasa", "operator+") {
 
     SECTION("ket nagyon nagy szam osszege")
     {
-        ss[0] << BigNum("1234567891011121314151617181920") + BigNum("212223242526272829303132333435");
+        ss[0] << Bignum("1234567891011121314151617181920") + Bignum("212223242526272829303132333435");
 
         CHECK(ss[0].str() == "1446791133537394143454749515355");
 
@@ -53,8 +53,8 @@ TEST_CASE("Nagy szamok osszeadasa", "operator+") {
         {
             a = std::rand() % 10000; // így nem csordul túl az int + int összeg
             b = std::rand() % 10000;
-            BigNum bNa(a);
-            BigNum bNb(b);
+            Bignum bNa(a);
+            Bignum bNb(b);
             ss[0] << (bNa + bNb);
             ss[1] << (a + b);
             std::cout << (a + b);

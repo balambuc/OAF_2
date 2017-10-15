@@ -1,27 +1,24 @@
 #include "catch.hpp"
-#include "BigNum.h"
+#include "Bignum.h"
 
-TEST_CASE("<< es >> operatorok", "operator(>>/<<)") {
+TEST_CASE("<< es >> operatorok", "[operator(>>/<<)]") {
     std::stringstream ss[3];
 
-    BigNum i(1234);
+    Bignum i(1234);
+    ss[0] << i;
 
-    std::string s = "5678";
-    ss[1] << s;
+    Bignum in;
+    ss[1] << "5678";
+    ss[1] >> in;
+    ss[2] << in;
 
     SECTION("<<")
     {
-        ss[0] << i;
         CHECK(ss[0].str() == "1234");
     }
 
     SECTION(">>")
     {
-        BigNum in;
-        ss[1] >> in;
-        BigNum::Enor en = in.createEnor();
-        for(en.first(); !en.end(); en.next())
-            ss[2] << en.current();
-        CHECK(ss[2].str() == "5678");
+        CHECK(ss[2].str() == ss[1].str());
     }
 }
