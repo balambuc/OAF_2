@@ -4,3 +4,5 @@ add_library(src STATIC
         multiply.cpp)
 
 target_include_directories(src PUBLIC headers)
+
+add_coverage(src)

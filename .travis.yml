@@ -4,11 +4,11 @@ compiler:
     - gcc
 
 addons:
-    apt:
-        sources:
-            - ubuntu-toolchain-r-test
-        packages:
-            - lcov
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - lcov
 
 branches:
   only:
@@ -18,11 +18,10 @@ script:
   - mkdir build && cd build
   - cmake .. -DENABLE_COVERAGE=On && make
   - make CTEST_OUTPUT_ON_FAILURE=1 test
-  - make gcov
-  - make lcov
 
 after_success:
-  - ls -alR
+  - make gcov
+  - make lcov
   - bash <(curl -s https://codecov.io/bash) -X gcov
 
 notifications:
