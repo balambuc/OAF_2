@@ -39,74 +39,23 @@ Bignum& operator+(const Bignum& lhs, const Bignum& rhs) {
     return *result;
 }
 
-/**
- * This is magic...basically long multiplication, buuuuuut IDK
- * @param lhs - left side of multiplication
- * @param rhs - right side of multiplication
- * @return result - a reference to the result of the operation
- */
+//Karatsuba ld: https://en.wikipedia.org/wiki/Karatsuba_algorithm
 Bignum& operator*(const Bignum& lhs, const Bignum& rhs) {
-    //FIXME
-    /*
-    auto result = new Bignum(0);
+    if(lhs._first->right()->value == 0 && lhs._first->right()->right() == lhs._first)
+        return  *(new Bignum(0));
+    if(rhs._first->right()->value == 0 && rhs._first->right()->right() == rhs._first)
+        return  *(new Bignum(0));
+    if(lhs._first->right()->value == 1 && lhs._first->right()->right() == lhs._first)
+        return  *(new Bignum(rhs));
+    if(rhs._first->right()->value == 1 && rhs._first->right()->right() == rhs._first)
+        return  *(new Bignum(lhs));
 
-    int sum, carry;
+    int B = 10;
+    int m = (lhs.length() < rhs.length() ? lhs.length() : rhs.length());
 
-    for (Bignum::Node* pLhs = lhs._last; pLhs; pLhs = pLhs->pLeft)
-    {
-        carry = 0;
-
-        for (Bignum::Node* pRhs = rhs._last; pRhs; pRhs = pRhs->pLeft)
-        {
-        }
-    }
-
-    return *result;
-
-
-
-    auto result = new Bignum(0);
-    Bignum lHand = Bignum();
-    Bignum rHand = Bignum();
-
-    if (lhs.length() <= rhs.length())
-    {
-        lHand = lhs;
-        rHand = rhs;
-    }
-    else
-    {
-        lHand = rhs;
-        rHand = lhs;
-    }
-
-    Bignum::Enor lhsEnor = lHand.createEnor(Bignum::Enor::MODE::L2F);
-    Bignum::Enor rhsEnor = rHand.createEnor(Bignum::Enor::MODE::L2F);
-    Bignum::Node* starter = result->_last;
-    int mul, carry;
-
-    for (lhsEnor.first(); !lhsEnor.end(); lhsEnor.next())
-    {
-        carry = 0;
-        Bignum::Node* p = starter;
-        for (rhsEnor.first(); !rhsEnor.end(); rhsEnor.next())
-        {
-            mul = lhsEnor.current()->value * rhsEnor.current()->value + carry + (p ? p->value : 0);
-            carry = mul / 10;
-            mul = mul % 10;
-            if (p)
-            {
-                p->value = mul;
-                p = p->prev;
-            }
-            else result->push_first(mul);
-        }
-        if (carry) result->push_first(carry);
-        starter = starter->prev;
-    }
+    auto result = new Bignum(lhs);
 
     return *result;
-    */
 }
 
 Bignum& Bignum::operator=(const Bignum& rhs) {

@@ -10,6 +10,7 @@ add_executable(tests
         streamOperators.cpp
         cpyCtor_op=.cpp
         operator+.cpp
+        "operator(mul).cpp"
         )
 
 target_link_libraries(tests src)

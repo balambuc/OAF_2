@@ -28,7 +28,7 @@ TEST_CASE("Nagy szamok osszeadasa", "[operator+]") {
     SECTION("asszociativitas vizsgalata")
     {
         ss[0] << ( Bignum(1234) + Bignum(5678) ) + Bignum(91011);
-        ss[1] << Bignum(5678) + ( Bignum(1234) + Bignum(91011) );
+        ss[1] << Bignum(1234) + ( Bignum(5678) + Bignum(91011) );
 
         CHECK(ss[0].str() == ss[1].str());
 
@@ -57,7 +57,6 @@ TEST_CASE("Nagy szamok osszeadasa", "[operator+]") {
             Bignum bNb(b);
             ss[0] << (bNa + bNb);
             ss[1] << (a + b);
-            std::cout << (a + b);
 
             CHECK(ss[0].str() == ss[1].str());
 
