@@ -17,52 +17,53 @@ private:
         int value;
 
         explicit Node(int value) : pLeft(this), value(value), pRight(this) {}
-        ~Node() { unlink(); pLeft = pRight = nullptr; }
+        ~Node() {
+            unlink();
+            pLeft = pRight = nullptr;
+        }
 
-        void unlink() { pLeft->pRight = pRight; pRight->pLeft = pLeft; pLeft = pRight = this; }
+        void unlink() {
+            pLeft->pRight = pRight;
+            pRight->pLeft = pLeft;
+            pLeft = pRight = this;
+        }
         void linkLeftOf(Node* ofNode);
         void linkRightOf(Node* ofNode);
-        Node* left() {return pLeft;};
-        Node* right() {return pRight;};
+        Node* left() { return pLeft; };
+        Node* right() { return pRight; };
     };
 
     Node* _first = new Node(-1);
 
-    /*void push(Node* prev, int n, Node* next);
-    void push_first(int n) { push(nullptr, n, _first); }
-    void push_last(int n) { push(_last, n, nullptr); }*/
     void copy(const Bignum& other);
     void destruct();
     int length() const;
 
 public:
-    /*class Enor {
-    public:
-        enum MODE {
-            F2L, L2F
-        };
-
+    class Enor {
     private:
-        Bignum* _bigNum;
-        Node* _ptr = nullptr;
-        Enor::MODE _m;
+        Bignum* _bignum;
+        Node* _ptr;
 
     public:
-        Enor(Bignum* bigNum, MODE m) : _bigNum(bigNum), _m(m) {}
+        explicit Enor(Bignum* bignum) : _bignum(bignum), _ptr(bignum->_first) {}
 
-        void first() { if (_m == L2F) _ptr = _bigNum->_last; else _ptr = _bigNum->_first; }
-        void next() { if (_m == L2F) _ptr = _ptr->prev; else _ptr = _ptr->next; }
+        void first() { next(); }
+        void next() { _ptr = _ptr->right(); }
         int current() { return _ptr->value; }
-        bool end() { return _ptr == nullptr; }
-    };*/
+        bool end() { return _ptr == _bignum->_first; }
+    };
 
     Bignum() = default;
     explicit Bignum(int n);
     explicit Bignum(const char* str);
     Bignum(const Bignum& other) { copy(other); }
-    ~Bignum() { destruct(); delete _first; }
+    ~Bignum() {
+        destruct();
+        delete _first;
+    }
 
-    //Enor createEnor(Enor::MODE mode = Enor::MODE::F2L) { return {this, mode}; }
+    Enor createEnor() {return *(new Enor(this));}
 
     Bignum& operator=(const Bignum& rhs);
 
