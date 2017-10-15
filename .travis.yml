@@ -14,11 +14,6 @@ branches:
   only:
   - master
 
-before_script:
-    - mkdir build
-    - cd build
-    - cmake ..
-
 script:
   - mkdir build && cd build
   - cmake .. -DENABLE_COVERAGE=On && make
