@@ -10,8 +10,6 @@ find_package(codecov)
 
 add_subdirectory(src)
 add_subdirectory(app)
-add_subdirectory(tests)
-
-add_test(NAME unit_tests COMMAND tests)
+add_subdirectory(unit_tests)
 
 coverage_evaluate()

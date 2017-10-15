@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.2)
-project(tests)
+project(unit_tests)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(tests
+add_executable(unit_tests
         catch.hpp
         main.cpp
         ctor.cpp
@@ -13,7 +13,11 @@ add_executable(tests
         "operator(mul).cpp"
         )
 
-target_link_libraries(tests src)
+target_link_libraries(unit_tests src)
 
+add_test(NAME unit_tests_bignum COMMAND unit_tests)
+
+find_package(codecov)
+add_coverage(unit_tests)
 
 
