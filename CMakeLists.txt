@@ -8,6 +8,7 @@ set(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
 
 if(TRAVIS)
+    message(Currently building with Travis CI)
     if(CMAKE_COMPILER_IS_GNUCXX)
         include(CodeCoverage)
         setup_target_for_coverage(${PROJECT_NAME}_coverage tests coverage)
