@@ -5,4 +5,3 @@ add_library(src STATIC
 
 target_include_directories(src PUBLIC headers)
 
-add_coverage(src)
