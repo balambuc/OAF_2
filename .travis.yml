@@ -19,7 +19,11 @@ before_script:
     - cd build
     - cmake ..
 
-script: make && make CTEST_OUTPUT_ON_FAILURE=1 test && ls -l -R
+script:
+  - mkdir build && cd build
+  - cmake .. -DENABLE_COVERAGE=On && make
+  - make CTEST_OUTPUT_ON_FAILURE=1 test
+  - ls -l -R
 
 after_success:
     # Creating report
