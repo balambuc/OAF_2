@@ -15,3 +15,12 @@ add_executable(tests
 
 target_link_libraries(tests src)
 
+
+enable_testing()
+add_test(NAME ctors COMMAND ctor)
+add_test(NAME streamOp COMMAND streamOperators)
+add_test(NAME copyAssign COMMAND cpyCtor_op=)
+add_test(NAME op+ COMMAND operator+)
+add_test(NAME op* COMMAND "operator(mul)")
+
+

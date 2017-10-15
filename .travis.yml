@@ -12,7 +12,7 @@ before_script:
     - cd build
     - cmake ..
 
-script: make && ./tests/tests
+script: make && make test
 
 notifications:
   email:
