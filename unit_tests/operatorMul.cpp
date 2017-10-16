@@ -5,9 +5,9 @@
 TEST_CASE("szorzas segedfuggvenyei", "[operator*]") {
     std::stringstream ss[2];
 
-    SECTION("timesB")
+    SECTION("times10to")
     {
-        ss[0] << timesB(3, *(new Bignum(123)));
+        ss[0] << times10to(3, *(new Bignum(123)));
         CHECK(ss[0].str() == "123000");
         ss[0].str("");
     }

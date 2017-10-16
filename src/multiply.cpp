@@ -6,7 +6,7 @@
  * @param num : Bignum
  * @return - num * 10^m
  */
-Bignum& timesB(int m, const Bignum& num) {
+Bignum& times10to(int m, const Bignum& num) {
     auto res = new Bignum(num);
     for (int i = 0; i < m; ++i)
         (new Bignum::Node(0))->linkLeftOf(res->_first);
@@ -67,6 +67,6 @@ Bignum& operator*(const Bignum& lhs, const Bignum& rhs) {
     Bignum z1 = x1 * y0 + x0 * y1;
     Bignum z0 = x0 * y0;
 
-    return timesB(2 * m, z2) + timesB(m, z1) + z0;
+    return times10to(2 * m, z2) + times10to(m, z1) + z0;
 }
 

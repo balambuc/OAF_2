@@ -11,6 +11,7 @@ add_executable(unit_tests
         cpyCtor_op=.cpp
         operator+.cpp
         operatorMul.cpp
+        exceptions.cpp
         )
 
 target_link_libraries(unit_tests src)

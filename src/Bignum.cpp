@@ -2,11 +2,14 @@
 #include <iostream>
 #include "Bignum.h"
 
+
 /**
  * Bignum constructor
  * @param n - number to hold
  */
 Bignum::Bignum(int n) {
+    if (n < 0)
+        throw *(new NotNaturalNum);
     if(n == 0)
         (new Node(0))->linkRightOf(_first);
     while (n  != 0)
@@ -21,8 +24,15 @@ Bignum::Bignum(int n) {
  * @param n - number to hold
  */
 Bignum::Bignum(const char* str) {
+    if(str[0] == '0' && std::strlen(str) > 1)
+        throw *(new StartsWithZero);
     for (int i = 0; i < std::strlen(str); ++i)
+    {
+        if(str[i] < '0' || str[i] > '9')
+            throw *(new NotNaturalNum);
         (new Node(str[i] - '0'))->linkLeftOf(_first);
+    }
+
 }
 
 /**

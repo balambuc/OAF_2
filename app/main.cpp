@@ -1,14 +1,62 @@
 #include <iostream>
+#include <cstdlib>
 #include "Bignum.h"
 
 
+using namespace std;
+
+bool read(Bignum& num);
+void printMenu();
+
 int main() {
-    std::cout << Bignum(123) * Bignum(4567) << std::endl;
-    std::cout << Bignum(7891011) * Bignum(3) << std::endl;
-    std::cout << Bignum(7891011) * Bignum(12) << std::endl;
-    std::cout << Bignum(7891011) * Bignum(123) << std::endl;
-    std::cout << Bignum(7891011) * Bignum(1234) << std::endl;
-    std::cout << Bignum(7891011) * Bignum(12345) << std::endl;
-    std::cout << Bignum(7891011) * Bignum(7234561) << std::endl;
-    return 0;
+    char option;
+    Bignum lhs, rhs;
+
+    do
+    {
+        printMenu();
+        cin >> option;
+        switch (option)
+        {
+            case '1':
+                if (read(lhs) && read(rhs))
+                    cout << lhs << " + " << rhs << " = " << (lhs + rhs) << endl;
+                break;
+
+            case '2':
+                if (read(lhs) && read(rhs))
+                    cout << lhs << " * " << rhs << " = " << (lhs * rhs) << endl;
+                break;
+
+            default:
+                cout << "Nincs ilyen opcio :(" << endl;
+        }
+    }
+    while (option != 'e' && option != 'E');
+}
+
+bool read(Bignum& num) {
+    try
+    {
+        cout << "Szam: ";
+        cin >> num;
+    }
+    catch (exception& e)
+    {
+        cout << "HIBA: " << e.what() << endl;
+        return false;
+    }
+    return true;
+}
+
+void printMenu() {
+    cout << endl
+         << "Nagyszamokat kezelo program" << endl
+         << endl
+         << "Valasszon az alabbi opciok kozul: " << endl
+         << "1) ket nagy szam osszeadasa" << endl
+         << "2) ket nagy szam szorzata" << endl
+         << "e) kilepes" << endl
+         << endl
+         << "Valasztott opcio: ";
 }
