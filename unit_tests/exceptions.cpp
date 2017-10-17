@@ -8,10 +8,9 @@ TEST_CASE("Kivetelkezeles", "[exceptions]") {
 
     SECTION("negativ")
     {
-        ss.str("-123");
-        CHECK_THROWS_AS(ss >> b, NotNaturalNum&);
+        Bignum* b;
+        CHECK_THROWS_AS(b = new Bignum(-1235), NotNaturalNum&);
     }
-
 
     SECTION("nem szam")
     {
