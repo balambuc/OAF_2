@@ -18,6 +18,6 @@ target_link_libraries(unit_tests src)
 
 add_test(NAME unit_tests_bignum COMMAND unit_tests)
 
-# add_coverage(unit_tests)
+add_coverage(unit_tests)
 
 
