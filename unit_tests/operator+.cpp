@@ -2,6 +2,7 @@
 #include "catch.hpp"
 #include "Bignum.h"
 
+
 TEST_CASE("Nagy szamok osszeadasa", "[operator+]") {
     std::stringstream ss[2];
 
@@ -27,8 +28,8 @@ TEST_CASE("Nagy szamok osszeadasa", "[operator+]") {
 
     SECTION("asszociativitas vizsgalata", "(a+b)+c = a+(b+c)")
     {
-        ss[0] << ( Bignum(1234) + Bignum(5678) ) + Bignum(91011);
-        ss[1] << Bignum(1234) + ( Bignum(5678) + Bignum(91011) );
+        ss[0] << (Bignum(1234) + Bignum(5678)) + Bignum(91011);
+        ss[1] << Bignum(1234) + (Bignum(5678) + Bignum(91011));
 
         CHECK(ss[0].str() == ss[1].str());
 

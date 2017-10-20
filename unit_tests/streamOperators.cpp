@@ -1,6 +1,7 @@
 #include "catch.hpp"
 #include "Bignum.h"
 
+
 TEST_CASE("<< es >> operatorok", "[operator(>>/<<)]") {
     std::stringstream ss[3];
 
