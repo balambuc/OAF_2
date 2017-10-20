@@ -47,11 +47,11 @@ Bignum& operator+(const Bignum& lhs, const Bignum& rhs) {
     Bignum::Node* pLhs = lhs._first->left();
     Bignum::Node* pRhs = rhs._first->left();
 
-    int sum, carry = 0;
+    int carry = 0;
 
     while (pLhs != lhs._first || pRhs != rhs._first)
     {
-        sum = (pLhs != lhs._first ? pLhs->value : 0) + carry + (pRhs != rhs._first ? pRhs->value : 0);
+        int sum = (pLhs != lhs._first ? pLhs->value : 0) + carry + (pRhs != rhs._first ? pRhs->value : 0);
         (new Bignum::Node(sum % 10))->linkRightOf(result->_first);
         carry = sum / 10;
 

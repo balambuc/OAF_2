@@ -27,10 +27,10 @@ Bignum& mulWithLessThanTen(int n, const Bignum& bignum) {
 
     auto result = new Bignum();
 
-    int prod, carry = 0;
+    int carry = 0;
     for (Bignum::Node* p = bignum._first->left(); p != bignum._first; p = p->left())
     {
-        prod = carry + n * p->value;
+        int prod = carry + n * p->value;
         (new Bignum::Node(prod % 10))->linkRightOf(result->_first);
         carry = prod / 10;
     }

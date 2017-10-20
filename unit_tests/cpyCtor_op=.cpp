@@ -10,7 +10,7 @@ TEST_CASE("Copy konstruktor es ertekadas operator", "[Bignum(Bignum) op=]") {
     ss[0] >> a;         // a = 456
     ss[1] << b;         // ss1 = 1234
 
-    SECTION("copy ctor")
+    SECTION("copy ctor", "Copy konstruktor tesztelese")
     {
         CHECK(ss[1].str() == "1234");
     }
@@ -20,7 +20,7 @@ TEST_CASE("Copy konstruktor es ertekadas operator", "[Bignum(Bignum) op=]") {
     ss[0] >> a;         // a = 4567
     ss[1] << b;         // ss1 = 1234456
 
-    SECTION("op=")
+    SECTION("op=", "Ertekadas operator tesztelese")
     {
         CHECK(ss[1].str() == "1234456");
     }
