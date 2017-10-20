@@ -39,6 +39,8 @@ private:
     void copy(const Bignum& other);
     void destruct();
     int length() const;
+    friend Bignum& times10to(int m, const Bignum& num);
+    friend Bignum& mulWithLessThanTen(int n, const Bignum& bignum);
 
 public:
     class Enor {
@@ -72,8 +74,6 @@ public:
     friend std::istream& operator>>(std::istream& is, Bignum& bigNum);
     friend Bignum& operator+(const Bignum& lhs, const Bignum& rhs);
     friend Bignum& operator*(const Bignum& lhs, const Bignum& rhs);
-    friend Bignum& times10to(int m, const Bignum& num);
-    friend Bignum& mulWithLessThanTen(int n, const Bignum& bignum);
 };
 
 

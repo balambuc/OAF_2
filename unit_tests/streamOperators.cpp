@@ -12,12 +12,12 @@ TEST_CASE("<< es >> operatorok", "[operator(>>/<<)]") {
     ss[1] >> in;
     ss[2] << in;
 
-    SECTION("<<")
+    SECTION("<<", "kiiro op")
     {
         CHECK(ss[0].str() == "1234");
     }
 
-    SECTION(">>")
+    SECTION(">>", "beolvaso op")
     {
         CHECK(ss[2].str() == ss[1].str());
     }
