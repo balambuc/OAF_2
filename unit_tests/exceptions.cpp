@@ -8,8 +8,7 @@ TEST_CASE("Kivetelkezeles", "[exceptions]") {
 
     SECTION("negativ", "NotNaturalNum exceptiont kel dobnia")
     {
-        Bignum* b;
-        CHECK_THROWS_AS(b = new Bignum(-1235), NotNaturalNum&);
+        CHECK_THROWS_AS(auto b = new Bignum(-1235), NotNaturalNum&);
     }
 
     SECTION("nem szam", "NotNaturalNum exceptiont kel dobnia")
