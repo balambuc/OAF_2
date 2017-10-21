@@ -1,3 +1,7 @@
+/**
+ * \test {operator+}
+ */
+
 #include <iostream>
 #include "catch.hpp"
 #include "Bignum.h"

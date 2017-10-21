@@ -1,3 +1,7 @@
+/**
+ * \test {exceptions}
+ */
+
 #include "catch.hpp"
 #include "Bignum.h"
 

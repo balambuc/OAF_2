@@ -1,3 +1,7 @@
+/**
+ * \test {constructors}
+ */
+
 #include "catch.hpp"
 #include "Bignum.h"
 

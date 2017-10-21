@@ -1,3 +1,7 @@
+/**
+ * \test {copy ctor and assignment operator}
+ */
+
 #include "catch.hpp"
 #include "Bignum.h"
 

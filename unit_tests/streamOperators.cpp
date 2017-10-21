@@ -1,3 +1,7 @@
+/**
+ * \test {<< and >> operators}
+ */
+
 #include "catch.hpp"
 #include "Bignum.h"
 
