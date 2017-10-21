@@ -93,11 +93,10 @@ TEST_CASE("Nagy szamok szorzasa", "[operator*]") {
     SECTION("ket random szam szorzata 10-szer", "ab")
     {
         std::srand(static_cast<unsigned int>(std::time(0)));
-        int a, b;
         for (int i = 0; i < 10; ++i)
         {
-            a = std::rand() % 10000; // így nem csordul túl az int * int szorzat
-            b = std::rand() % 10000;
+            int a = std::rand() % 10000; // így nem csordul túl az int * int szorzat
+            int b = std::rand() % 10000;
             Bignum bNa(a);
             Bignum bNb(b);
             ss[0] << (bNa * bNb);
