@@ -6,11 +6,11 @@
  * @param num : Bignum
  * @return - num * 10^m
  */
-Bignum& times10to(int m, const Bignum& num) {
-    auto res = new Bignum(num);
+Bignum times10to(int m, const Bignum& num) {
+    Bignum res(num);
     for (int i = 0; i < m; ++i)
-        (new Bignum::Node(0))->linkLeftOf(res->_first);
-    return *res;
+        (new Bignum::Node(0))->linkLeftOf(res._first);
+    return res;
 }
 
 /**
@@ -19,24 +19,24 @@ Bignum& times10to(int m, const Bignum& num) {
  * @param bignum : Bignum
  * @return - num *n
  */
-Bignum& mulWithLessThanTen(int n, const Bignum& bignum) {
+Bignum mulWithLessThanTen(int n, const Bignum& bignum) {
     if (n == 0)
-        return *(new Bignum(0));
+        return Bignum(0);
     if (n == 1)
-        return *(new Bignum(bignum));
+        return Bignum(bignum);
 
-    auto result = new Bignum();
+    Bignum result;
 
     int carry = 0;
     for (Bignum::Node* p = bignum._first->left(); p != bignum._first; p = p->left())
     {
         int prod = carry + n * p->value;
-        (new Bignum::Node(prod % 10))->linkRightOf(result->_first);
+        (new Bignum::Node(prod % 10))->linkRightOf(result._first);
         carry = prod / 10;
     }
-    if (carry) (new Bignum::Node(carry))->linkRightOf(result->_first);
+    if (carry) (new Bignum::Node(carry))->linkRightOf(result._first);
 
-    return *result;
+    return result;
 }
 
 /**
@@ -46,7 +46,7 @@ Bignum& mulWithLessThanTen(int n, const Bignum& bignum) {
  * @param rhs - right hand side of the operation
  * @return - result of the multiplcation
  */
-Bignum& operator*(const Bignum& lhs, const Bignum& rhs) {
+Bignum operator*(const Bignum& lhs, const Bignum& rhs) {
     if (lhs.length() == 1)
         return mulWithLessThanTen(lhs._first->right()->value, rhs);
 

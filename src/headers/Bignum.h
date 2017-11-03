@@ -13,6 +13,8 @@ private:
     private:
         Node* pLeft;
         Node* pRight;
+        Node(const Bignum::Node&);
+        Node operator=(const Bignum::Node&);
 
     public:
         int value;
@@ -39,8 +41,8 @@ private:
     void copy(const Bignum& other);
     void destruct();
     int length() const;
-    friend Bignum& times10to(int m, const Bignum& num);
-    friend Bignum& mulWithLessThanTen(int n, const Bignum& bignum);
+    friend Bignum times10to(int m, const Bignum& num);
+    friend Bignum mulWithLessThanTen(int n, const Bignum& bignum);
 
 public:
     class Enor {
@@ -70,10 +72,10 @@ public:
 
     Bignum& operator=(const Bignum& rhs);
 
-    friend std::ostream& operator<<(std::ostream& os, Bignum& bigNum);
+    friend std::ostream& operator<<(std::ostream& os, const Bignum& bigNum);
     friend std::istream& operator>>(std::istream& is, Bignum& bigNum);
-    friend Bignum& operator+(const Bignum& lhs, const Bignum& rhs);
-    friend Bignum& operator*(const Bignum& lhs, const Bignum& rhs);
+    friend Bignum operator+(const Bignum& lhs, const Bignum& rhs);
+    friend Bignum operator*(const Bignum& lhs, const Bignum& rhs);
 };
 
 

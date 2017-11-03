@@ -3,6 +3,9 @@ project(2bead)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -Weffc++)
+
+enable_testing()
 
 add_subdirectory(src)
 add_subdirectory(app)

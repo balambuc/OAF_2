@@ -41,7 +41,7 @@ Bignum::Bignum(const char* str) {
  * @param rhs - right hand side of the operation
  * @return - result of the operation
  */
-Bignum& operator+(const Bignum& lhs, const Bignum& rhs) {
+Bignum operator+(const Bignum& lhs, const Bignum& rhs) {
     auto result = new Bignum();
 
     Bignum::Node* pLhs = lhs._first->left();
@@ -81,7 +81,7 @@ Bignum& Bignum::operator=(const Bignum& rhs) {
  * @param bignum - any Bignum
  * @return - outsream after operation
  */
-std::ostream& operator<<(std::ostream& os, Bignum& bignum) {
+std::ostream& operator<<(std::ostream& os, const Bignum& bignum) {
     for (Bignum::Node* p = bignum._first->right(); p != bignum._first ; p = p->right())
         os << p->value;
     return os;
