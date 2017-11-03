@@ -20,10 +20,9 @@ before_script:
 script: make && make CTEST_OUTPUT_ON_FAILURE=1 test
 
 after_success:
-  - cd unit_tests
   - mkdir coverage
-  - kcov ./coverage unit_tests
-  - ls coverage
+  - kcov ./coverage unit_tests/unit_tests
+  - ls coverage -alR
   - bash <(curl -s https://codecov.io/bash) -s ./coverage
 
 notifications:
