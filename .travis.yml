@@ -3,26 +3,16 @@ language: cpp
 compiler:  
     - gcc
 
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - lcov
-
 branches:
   only:
   - master
 
-script:
-  - mkdir build && cd build
-  - cmake .. -DENABLE_COVERAGE=On && make
-  - make CTEST_OUTPUT_ON_FAILURE=1 test
+before_script:
+    - mkdir build
+    - cd build
+    - cmake ..
 
-after_success:
-  - make gcov
-  - make lcov
-  - bash <(curl -s https://codecov.io/bash) -X gcov
+script: make && make CTEST_OUTPUT_ON_FAILURE=1 test
 
 notifications:
   email:
