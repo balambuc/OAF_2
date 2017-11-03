@@ -7,6 +7,11 @@ branches:
   only:
     - master
 
+addons:
+  apt:
+    packages:
+      - kcov
+
 before_script:
   - mkdir build
   - cd build
