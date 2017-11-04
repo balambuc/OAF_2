@@ -7,11 +7,6 @@ branches:
   only:
     - master
 
-addons:
-  apt:
-    packages:
-      - kcov
-
 before_script:
   - mkdir build
   - cd build
@@ -20,11 +15,10 @@ before_script:
 script: make && make CTEST_OUTPUT_ON_FAILURE=1 test
 
 after_success:
-  - mkdir coverage
-  - ls -laR
-  #- cd coverage
-  #- gcov
-  #- bash <(curl -s https://codecov.io/bash)
+  - mkdir ../coverage
+  - cd ../coverage
+  - gcov ../src/*.cpp -o ../build/src/CMakeFiles/src.dir
+  - bash <(curl -s https://codecov.io/bash) -X gcov
 
 notifications:
   email:
