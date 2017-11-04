@@ -17,8 +17,8 @@ script: make && make CTEST_OUTPUT_ON_FAILURE=1 test
 after_success:
   - mkdir ../coverage
   - cd ../coverage
-  - gcov ../src/*.cpp -o ../build/src/CMakeFiles/src.dir
-  - bash <(curl -s https://codecov.io/bash) -X gcov
+  - gcov ../src/*.cpp -o ../build/src/CMakeFiles/src.dir/
+  - bash <(curl -s https://codecov.io/bash) -X gcov -s ./coverage
 
 notifications:
   email:

@@ -26,7 +26,7 @@ Bignum::Bignum(int n) {
 Bignum::Bignum(const char* str) {
     if(str[0] == '0' && std::strlen(str) > 1)
         throw *(new StartsWithZero);
-    for (int i = 0; i < std::strlen(str); ++i)
+    for (size_t i = 0; i < std::strlen(str); ++i)
     {
         if(str[i] < '0' || str[i] > '9')
             throw *(new NotNaturalNum);
