@@ -1,11 +1,11 @@
 language: cpp
 
-compiler:  
-  - gcc
+sudo: false
+
+compiler: gcc
 
 branches:
-  only:
-    - master
+  only: master
 
 before_script:
   - mkdir build
@@ -18,8 +18,7 @@ after_success:
   - mkdir ../coverage
   - cd ../coverage
   - gcov ../src/*.cpp -o ../build/src/CMakeFiles/src.dir/
-  - ls
-  - bash <(curl -s https://codecov.io/bash) -X gcov -s ./coverage
+  - bash <(curl -s https://codecov.io/bash) -X gcov -s ./coverage/
 
 notifications:
   email:
