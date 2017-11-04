@@ -18,6 +18,7 @@ after_success:
   - mkdir ../coverage
   - cd ../coverage
   - gcov ../src/*.cpp -o ../build/src/CMakeFiles/src.dir/
+  - ls
   - bash <(curl -s https://codecov.io/bash) -X gcov -s ./coverage
 
 notifications:
