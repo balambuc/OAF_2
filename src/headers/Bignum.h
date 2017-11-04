@@ -19,7 +19,7 @@ private:
     public:
         int value;
 
-        explicit Node(int value) : pLeft(this), value(value), pRight(this) {}
+        explicit Node(int value) : pLeft(this), pRight(this), value(value) {}
         ~Node() {
             unlink();
             pLeft = pRight = nullptr;
